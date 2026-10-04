@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { motion } from 'motion/react';
+import { sectionReveal } from './Reveal';
 import { Mail, Send, CheckCircle2, ArrowUpRight, Github, Linkedin, Twitter, MessageSquare } from 'lucide-react';
 import { UserProfile } from '../types/portfolio';
 
@@ -9,7 +11,7 @@ interface ContactSectionProps {
 export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [projectType, setProjectType] = useState('Full Stack Web & Mobile');
+  const [projectType, setProjectType] = useState('Website / Landing Page');
   const [timeline, setTimeline] = useState('Immediate / Next 30 Days');
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
@@ -26,7 +28,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
   };
 
   return (
-    <section id="contact" className="py-24 border-t border-[#D4AF37]/20 relative">
+    <motion.section id="contact" className="py-24 border-t border-[#D4AF37]/20 relative" {...sectionReveal}>
       <div className="max-w-7xl mx-auto px-6">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
@@ -36,14 +38,14 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
             <span className="text-xs font-mono tracking-widest text-[#D4AF37] uppercase">
               Initiate Collaboration
             </span>
-            <h2 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-white mt-1 mb-4">
+            <h2 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl text-white mt-1 mb-4">
               05. Let's Build Together
             </h2>
             <p className="font-editorial italic text-xl text-[#F3E5AB] mb-4">
-              "Available for select engineering contracts & senior architecture roles."
+              "Available for frontend roles & freelance projects."
             </p>
             <p className="font-sans text-neutral-400 text-sm leading-relaxed mb-8">
-              Whether you need to architect a high-throughput backend in Go, build an haute couture web application in Next.js, or ship a zero-latency native iOS/Android mobile client, I bring bold precision to every line of code.
+              Whether you need a new website, a booking or ticketing platform, an ordering app, or a polished interface for your existing product, I build clean, responsive frontends that your users will enjoy.
             </p>
 
             {/* Direct Email Card */}
@@ -166,11 +168,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
                         onChange={(e) => setProjectType(e.target.value)}
                         className="w-full px-3.5 py-2.5 bg-[#14141B] border border-[#D4AF37]/25 rounded-lg text-xs text-[#F3E5AB] focus:outline-none focus:border-[#D4AF37]"
                       >
-                        <option value="Full Stack Web & Mobile">Full Stack Web & Mobile App</option>
-                        <option value="Native Mobile Architecture">Native iOS & Android Architecture</option>
-                        <option value="High-Performance Software & Backend">Software Systems & Distributed Backend</option>
-                        <option value="Haute Web Application">Haute Web Platform / E-Commerce</option>
-                        <option value="Technical Advisory / Fractional Lead">Technical Advisory / Fractional Lead</option>
+                        <option value="Website / Landing Page">Website / Landing Page</option>
+                        <option value="Web Application">Web Application</option>
+                        <option value="Booking / Ticketing / Ordering Platform">Booking, Ticketing or Ordering Platform</option>
+                        <option value="Frontend Redesign">Frontend Redesign / UI Improvements</option>
+                        <option value="Full-Time Frontend Role">Full-Time Frontend Role</option>
                       </select>
                     </div>
 
@@ -228,6 +230,6 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
         </div>
 
       </div>
-    </section>
+    </motion.section>
   );
 };

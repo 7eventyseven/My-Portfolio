@@ -24,6 +24,7 @@ import {
   resetPortfolioData
 } from './utils/storage';
 import { Check, Sparkles, X } from 'lucide-react';
+import { MotionConfig } from 'motion/react';
 
 export default function App() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -118,6 +119,7 @@ export default function App() {
   }
 
   return (
+    <MotionConfig reducedMotion="user">
     <div className="min-h-screen bg-[#08080A] text-neutral-200 selection:bg-[#D4AF37]/30 selection:text-[#F3E5AB]">
       
       {/* Toast Notification */}
@@ -214,5 +216,6 @@ export default function App() {
       />
 
     </div>
+    </MotionConfig>
   );
 }

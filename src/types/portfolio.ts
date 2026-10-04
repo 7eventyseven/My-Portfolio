@@ -14,6 +14,7 @@ export interface Project {
   role: string;
   clientOrContext?: string;
   imageUrl: string;
+  imageStyle?: 'cover' | 'mobile' | 'logo';
   featured?: boolean;
   description: string;
   challenge?: string;
@@ -52,6 +53,12 @@ export interface ExperienceItem {
   description: string;
   achievements: string[];
   tech: string[];
+}
+
+export interface EducationItem {
+  institution: string;
+  degree: string;
+  period: string;
 }
 
 export interface SkillCategory {

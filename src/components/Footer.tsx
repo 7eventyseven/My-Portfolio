@@ -28,7 +28,7 @@ export const Footer: React.FC<FooterProps> = ({
               {profile.brandTag}
             </div>
             <p className="font-sans text-xs text-neutral-400 max-w-md leading-relaxed">
-              Haute software engineering, high-throughput backend architecture, and fluid native mobile development.
+              Frontend development: clean, responsive and user-friendly web experiences.
             </p>
           </div>
 

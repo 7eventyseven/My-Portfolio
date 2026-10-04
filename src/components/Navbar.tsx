@@ -26,7 +26,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           href="#" 
           className="font-display font-extrabold text-lg sm:text-xl tracking-wider text-gold-gradient hover:opacity-90 transition-opacity whitespace-nowrap"
         >
-          {profile.brandTag || "AURELIA // LANGNAN"}
+          {profile.brandTag || "AURELIA // PLANGNAN"}
         </a>
 
         {/* Zone 2: 4-6 clean text navigation links */}

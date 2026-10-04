@@ -1,4 +1,6 @@
 import React, { useState, useMemo } from 'react';
+import { motion } from 'motion/react';
+import { sectionReveal } from './Reveal';
 import { Search, Plus, Filter, Sparkles, Layers } from 'lucide-react';
 import { Project, ProjectCategory } from '../types/portfolio';
 import { ProjectCard } from './ProjectCard';
@@ -53,7 +55,7 @@ export const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({
   }, [projects, selectedCategory, searchQuery]);
 
   return (
-    <section id="works" className="py-24 border-t border-[#D4AF37]/20 relative">
+    <motion.section id="works" className="py-24 border-t border-[#D4AF37]/20 relative" {...sectionReveal}>
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Section Header */}
@@ -61,14 +63,14 @@ export const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({
           <div>
             <div className="flex items-center gap-2 mb-2">
               <span className="text-xs font-mono tracking-widest text-[#D4AF37] uppercase">
-                Curated Engineering Catalog
+                Portfolio
               </span>
             </div>
-            <h2 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-white">
+            <h2 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl text-white">
               01. Selected Works
             </h2>
             <p className="font-sans text-neutral-400 text-sm sm:text-base mt-2 max-w-xl">
-              Production-grade systems, high-traffic web applications, and fluid native mobile platforms.
+              Smart-city, delivery, education, ticketing, music and gaming products I've built.
             </p>
           </div>
 
@@ -148,7 +150,7 @@ export const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({
             <Search className="w-4 h-4 text-[#D4AF37] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
               type="text"
-              placeholder="Search by title, stack (e.g. Go, Swift, React)..."
+              placeholder="Search by title, stack (e.g. JavaScript, Node.js)..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-10 pr-4 py-2.5 bg-[#121217] border border-[#D4AF37]/25 rounded-xl text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37]"
@@ -179,6 +181,7 @@ export const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({
                   onEdit={onEditProject}
                   onDelete={onDeleteProject}
                   isWide={isWide}
+                  index={idx}
                 />
               );
             })}
@@ -214,6 +217,6 @@ export const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({
         )}
 
       </div>
-    </section>
+    </motion.section>
   );
 };

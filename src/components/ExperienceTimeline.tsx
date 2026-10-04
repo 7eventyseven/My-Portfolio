@@ -1,10 +1,12 @@
 import React from 'react';
-import { Briefcase, Calendar, MapPin, CheckCircle2 } from 'lucide-react';
-import { CAREER_EXPERIENCES } from '../data/initialData';
+import { motion } from 'motion/react';
+import { sectionReveal } from './Reveal';
+import { Briefcase, Calendar, MapPin, CheckCircle2, GraduationCap } from 'lucide-react';
+import { CAREER_EXPERIENCES, EDUCATION } from '../data/initialData';
 
 export const ExperienceTimeline: React.FC = () => {
   return (
-    <section id="journey" className="py-24 border-t border-[#D4AF37]/20 relative">
+    <motion.section id="journey" className="py-24 border-t border-[#D4AF37]/20 relative" {...sectionReveal}>
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Header */}
@@ -12,11 +14,11 @@ export const ExperienceTimeline: React.FC = () => {
           <span className="text-xs font-mono tracking-widest text-[#D4AF37] uppercase">
             Trajectory & Engagements
           </span>
-          <h2 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-white mt-1">
+          <h2 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl text-white mt-1">
             04. Career Journey
           </h2>
           <p className="font-sans text-neutral-400 text-sm sm:text-base mt-2">
-            A track record of engineering leadership across high-growth startups, scale-ups, and specialized luxury engineering studios.
+            Building and shipping real products, backed by a B.Sc. in Computer Science and hands-on customer-facing experience.
           </p>
         </div>
 
@@ -27,8 +29,12 @@ export const ExperienceTimeline: React.FC = () => {
           <div className="hidden lg:block absolute left-8 top-6 bottom-6 w-px bg-[#D4AF37]/25" aria-hidden="true" />
 
           {CAREER_EXPERIENCES.map((exp, idx) => (
-            <div
+            <motion.div
               key={idx}
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.6, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
               className="relative lg:pl-20 group"
             >
               {/* Desktop timeline marker */}
@@ -96,12 +102,47 @@ export const ExperienceTimeline: React.FC = () => {
                 </div>
 
               </div>
-            </div>
+            </motion.div>
+          ))}
+
+          {EDUCATION.map((edu) => (
+            <motion.div
+              key={edu.institution}
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              className="relative lg:pl-20 group"
+            >
+              <div 
+                className="hidden lg:flex absolute left-6 top-6 -translate-x-1/2 w-5 h-5 rounded-full bg-[#121218] border-2 border-[#D4AF37] items-center justify-center shadow-[0_0_15px_rgba(212,175,55,0.4)] group-hover:scale-125 transition-transform" 
+                aria-hidden="true"
+              >
+                <div className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]" />
+              </div>
+
+              <div className="p-6 sm:p-8 rounded-2xl border border-[#D4AF37]/25 bg-[#0F0F14] hover:border-[#D4AF37]/50 transition-all hover:shadow-[0_0_30px_rgba(212,175,55,0.1)] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="flex items-start gap-3">
+                  <GraduationCap className="w-6 h-6 text-[#D4AF37] shrink-0 mt-1" />
+                  <div>
+                    <h3 className="font-display font-bold text-xl sm:text-2xl text-white">
+                      {edu.degree}
+                    </h3>
+                    <div className="font-editorial italic text-base text-[#F3E5AB] mt-0.5">
+                      {edu.institution}
+                    </div>
+                  </div>
+                </div>
+                <span className="font-mono text-xs text-[#D4AF37] font-semibold">
+                  {edu.period}
+                </span>
+              </div>
+            </motion.div>
           ))}
 
         </div>
 
       </div>
-    </section>
+    </motion.section>
   );
 };

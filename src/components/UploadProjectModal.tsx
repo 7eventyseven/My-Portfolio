@@ -14,9 +14,9 @@ const PRESET_IMAGES = [
 ];
 
 const SUGGESTED_TECHS = [
-  'React', 'Next.js', 'React Native', 'Swift', 'TypeScript', 'Go', 
-  'Python', 'Node.js', 'Tailwind CSS', 'Docker', 'PostgreSQL', 'Redis',
-  'GraphQL', 'WebSockets', 'Three.js', 'Kubernetes'
+  'HTML', 'CSS', 'JavaScript', 'TypeScript', 'React', 'Next.js',
+  'Node.js', 'Python', 'PHP', 'Tailwind CSS', 'REST APIs', 'MySQL',
+  'Firebase', 'Git', 'Vercel'
 ];
 
 interface UploadProjectModalProps {

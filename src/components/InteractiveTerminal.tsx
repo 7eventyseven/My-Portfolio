@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Copy, Check, Terminal as TerminalIcon, Code, Cpu, Smartphone } from 'lucide-react';
+import { motion } from 'motion/react';
+import { sectionReveal } from './Reveal';
+import { Copy, Check } from 'lucide-react';
 
 interface CodeSnippet {
   id: string;
@@ -13,142 +15,98 @@ interface CodeSnippet {
 
 const SNIPPETS: CodeSnippet[] = [
   {
-    id: 'backend-go',
-    tabLabel: 'Go // Distributed Pipeline',
-    title: 'High-Concurrency Worker Pool with Backpressure & Raft Buffer',
-    domain: 'Software & Backend Systems',
-    language: 'go',
-    insight: 'Processes up to 4.2M events/second by avoiding garbage collection pauses with preallocated sync.Pool memory buffers and non-blocking channel selects.',
-    code: `package pipeline
-
-import (
-	"context"
-	"sync"
-	"time"
-)
-
-// Dispatcher coordinates concurrent ingest workers with bounded channel queues
-type Dispatcher struct {
-	WorkerPool chan chan EventPayload
-	MaxWorkers int
-	Queue      chan EventPayload
-	Metrics    *TelemetryCollector
+    id: 'js-word-scramble',
+    tabLabel: 'JavaScript // Word Scramble',
+    title: 'Scramble & Check Logic for a Word Puzzle Game',
+    domain: 'JavaScript & Interactivity',
+    language: 'javascript',
+    insight: 'Uses a Fisher-Yates shuffle so every arrangement is equally likely, and re-shuffles if the scrambled word accidentally matches the answer.',
+    code: `function shuffle(letters) {
+  const arr = [...letters];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
 }
 
-func NewDispatcher(maxWorkers int, queueCap int) *Dispatcher {
-	return &Dispatcher{
-		WorkerPool: make(chan chan EventPayload, maxWorkers),
-		MaxWorkers: maxWorkers,
-		Queue:      make(chan EventPayload, queueCap),
-		Metrics:    NewTelemetryCollector(),
-	}
+export function scrambleWord(word) {
+  if (word.length < 2) return word;
+  let scrambled;
+  do {
+    scrambled = shuffle(word).join('');
+  } while (scrambled === word);
+  return scrambled;
 }
 
-// Ingest streams events with sub-millisecond atomic dispatch
-func (d *Dispatcher) Ingest(ctx context.Context, payload EventPayload) error {
-	select {
-	case d.Queue <- payload:
-		d.Metrics.IncrementIngested()
-		return nil
-	case <-time.After(25 * time.Millisecond):
-		// Graceful backpressure shedding without blocking HTTP handler
-		return ErrBackpressureBufferSaturated
-	case <-ctx.Done():
-		return ctx.Err()
-	}
+export function checkAnswer(attempt, word) {
+  return attempt.trim().toLowerCase() === word.toLowerCase();
 }`
   },
   {
-    id: 'mobile-native',
-    tabLabel: 'React Native // Gesture Engine',
-    title: 'Custom 120Hz Haptic Physics Gesture Driver for iOS & Android',
-    domain: 'Mobile App Architecture',
-    language: 'typescript',
-    insight: 'Runs gesture transforms entirely on the native UI thread via React Native Worklets and Skia, preventing JavaScript thread bottlenecking during rapid swipes.',
-    code: `import { useCallback } from 'react';
-import { Gesture } from 'react-native-gesture-handler';
-import { useSharedValue, withSpring, runOnJS } from 'react-native-reanimated';
-import * as Haptics from 'expo-haptics';
-
-export const useHauteSwipeGesture = (onCommit: () => void) => {
-  const translateX = useSharedValue(0);
-  const scale = useSharedValue(1);
-
-  const triggerHaptic = useCallback(() => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-  }, []);
-
-  const panGesture = Gesture.Pan()
-    .onUpdate((event) => {
-      'worklet';
-      translateX.value = event.translationX;
-      scale.value = 1 - Math.min(Math.abs(event.translationX) / 800, 0.08);
-    })
-    .onEnd((event) => {
-      'worklet';
-      if (Math.abs(event.translationX) > 160) {
-        // Threshold crossed: trigger tactile pulse and execute commit
-        runOnJS(triggerHaptic)();
-        translateX.value = withSpring(Math.sign(event.translationX) * 500);
-        runOnJS(onCommit)();
-      } else {
-        // Snap back with smooth cubic-spring damping
-        translateX.value = withSpring(0, { damping: 14, stiffness: 120 });
-        scale.value = withSpring(1);
-      }
-    });
-
-  return { panGesture, translateX, scale };
-};`
-  },
-  {
-    id: 'web-edge',
-    tabLabel: 'TypeScript // Edge Cache',
-    title: 'Distributed Multi-Tier Edge Cache with Stale-While-Revalidate',
-    domain: 'Web Engineering & Full Stack',
-    language: 'typescript',
-    insight: 'Delivers sub-15ms edge responses globally with optimistic lock-free writes and deterministic TTL tiering.',
-    code: `import { createClient } from '@vercel/kv';
-
-export interface CacheEnvelope<T> {
-  data: T;
-  freshUntil: number;
-  staleUntil: number;
-  version: string;
+    id: 'css-responsive-grid',
+    tabLabel: 'CSS // Responsive Event Grid',
+    title: 'Mobile-First Card Grid for Event & Product Listings',
+    domain: 'Frontend Foundations',
+    language: 'css',
+    insight: 'A single auto-fill grid adapts from one column on phones to several on desktops, with no media query per breakpoint.',
+    code: `.event-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+  padding: 1.5rem;
 }
 
-export async function resolveWithEdgeTier<T>(
-  key: string,
-  fetcher: () => Promise<T>,
-  ttlSeconds: number = 300
-): Promise<T> {
-  const kv = createClient({ /* Edge credentials */ });
-  const cached = await kv.get<CacheEnvelope<T>>(key);
-  const now = Date.now();
+.event-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: #121217;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
-  // Tier 1: Fresh cache hit (sub-15ms)
-  if (cached && now < cached.freshUntil) {
-    return cached.data;
-  }
+.event-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(212, 175, 55, 0.15);
+}
 
-  // Tier 2: Stale data present - serve immediately and revalidate asynchronously
-  if (cached && now < cached.staleUntil) {
-    // Non-blocking background revalidation
-    queueBackgroundRevalidation(key, fetcher, ttlSeconds);
-    return cached.data;
-  }
-
-  // Tier 3: Cache miss - fetch authoritatively
-  const freshData = await fetcher();
-  const envelope: CacheEnvelope<T> = {
-    data: freshData,
-    freshUntil: now + (ttlSeconds * 1000),
-    staleUntil: now + (ttlSeconds * 3 * 1000),
-    version: 'v2.6'
-  };
-  await kv.set(key, envelope, { ex: ttlSeconds * 3 });
-  return freshData;
+.event-card img {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
 }`
+  },
+  {
+    id: 'node-booking-api',
+    tabLabel: 'Node.js // Booking API',
+    title: 'Simple Express Endpoint for Booking a Session or Ticket',
+    domain: 'Backend & Scripting',
+    language: 'javascript',
+    insight: 'Validates input up front and returns clear status codes, so the frontend can show users exactly what went wrong.',
+    code: `import express from 'express';
+
+const app = express();
+app.use(express.json());
+
+const bookings = [];
+
+app.post('/api/bookings', (req, res) => {
+  const { name, email, date } = req.body;
+
+  if (!name || !email || !date) {
+    return res.status(400).json({ error: 'Name, email and date are required.' });
+  }
+
+  if (bookings.some((b) => b.date === date)) {
+    return res.status(409).json({ error: 'That slot is already booked.' });
+  }
+
+  const booking = { id: Date.now(), name, email, date };
+  bookings.push(booking);
+  res.status(201).json(booking);
+});
+
+app.listen(3001);`
   }
 ];
 
@@ -165,19 +123,19 @@ export const InteractiveTerminal: React.FC = () => {
   };
 
   return (
-    <section id="blueprint" className="py-24 border-t border-[#D4AF37]/20 relative">
+    <motion.section id="blueprint" className="py-24 border-t border-[#D4AF37]/20 relative" {...sectionReveal}>
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Header */}
         <div className="max-w-2xl mb-10">
           <span className="text-xs font-mono tracking-widest text-[#D4AF37] uppercase">
-            Architectural Philosophy
+            How I Build
           </span>
-          <h2 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-white mt-1">
-            03. Engineering Blueprint
+          <h2 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl text-white mt-1">
+            03. Code Samples
           </h2>
           <p className="font-sans text-neutral-400 text-sm sm:text-base mt-2">
-            Real code excerpts showcasing performance-critical algorithms, low-latency concurrent routines, and native gestural pipelines.
+            Short code excerpts showing interactive JavaScript, responsive CSS layouts and simple Node.js APIs.
           </p>
         </div>
 
@@ -262,12 +220,12 @@ export const InteractiveTerminal: React.FC = () => {
               <span className="inline-block w-2 h-2 rounded-full bg-[#D4AF37] animate-pulse" />
               <span>Language: {activeSnippet.language.toUpperCase()}</span>
             </div>
-            <span>Zero Slop · Production Hardened</span>
+            <span>Clean · Readable · Responsive</span>
           </div>
 
         </div>
 
       </div>
-    </section>
+    </motion.section>
   );
 };

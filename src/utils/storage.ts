@@ -1,8 +1,8 @@
 import { Project, UserProfile } from '../types/portfolio';
 import { INITIAL_PROJECTS, INITIAL_USER_PROFILE } from '../data/initialData';
 
-const PROJECTS_STORAGE_KEY = 'aurelia_portfolio_projects_v1';
-const PROFILE_STORAGE_KEY = 'aurelia_portfolio_profile_v1';
+const PROJECTS_STORAGE_KEY = 'aurelia_portfolio_projects_v5';
+const PROFILE_STORAGE_KEY = 'aurelia_portfolio_profile_v4';
 
 export function getStoredProjects(): Project[] {
   try {

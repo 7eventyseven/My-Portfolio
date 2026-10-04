@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { X, Printer, Copy, Check, Download, Mail, Github, Linkedin, MapPin, Globe } from 'lucide-react';
 import { UserProfile, Project } from '../types/portfolio';
-import { CAREER_EXPERIENCES, SKILL_CATEGORIES } from '../data/initialData';
+import { CAREER_EXPERIENCES, SKILL_CATEGORIES, EDUCATION, AREAS_OF_INTEREST } from '../data/initialData';
 
 interface ResumeModalProps {
   isOpen: boolean;
@@ -33,9 +33,7 @@ PROFESSIONAL SUMMARY
 ${profile.bio}
 
 CORE TECHNICAL SKILLS
-- Software & Distributed Systems: Go, Python, gRPC, Docker, Kubernetes, PostgreSQL, Redis
-- Web & Frontend Engineering: React, Next.js, TypeScript, Tailwind CSS, Three.js, GraphQL
-- Mobile & Native Apps: React Native, Swift, iOS, Offline-First Sync, Skia Haptics
+${SKILL_CATEGORIES.map(c => `- ${c.title}: ${c.skills.map(s => s.name).join(', ')}`).join('\n')}
 
 EXPERIENCE
 ${CAREER_EXPERIENCES.map(e => `
@@ -47,7 +45,13 @@ Technologies: ${e.tech.join(', ')}
 `).join('\n')}
 
 SELECTED SHIPPED PROJECTS
-${projects.slice(0, 4).map(p => `• ${p.title} (${p.category}, ${p.year}): ${p.tagline}`).join('\n')}
+${projects.map(p => `• ${p.title} (${[p.category, p.year].filter(Boolean).join(', ')}): ${p.tagline}`).join('\n')}
+
+EDUCATION
+${EDUCATION.map(e => `${e.degree} | ${e.institution} (${e.period})`).join('\n')}
+
+AREAS OF INTEREST
+${AREAS_OF_INTEREST.join(', ')}
     `.trim();
 
     navigator.clipboard.writeText(textContent);
@@ -131,7 +135,9 @@ ${projects.slice(0, 4).map(p => `• ${p.title} (${p.category}, ${p.year}): ${p.
               </div>
               <div className="flex items-center gap-2">
                 <Github className="w-3.5 h-3.5 text-[#D4AF37]" />
-                <span>github.com/developer</span>
+                <a href={profile.github} target="_blank" rel="noopener noreferrer" className="text-[#F3E5AB] hover:underline">
+                  {profile.github.replace(/^https?:\/\//, '')}
+                </a>
               </div>
             </div>
           </div>
@@ -142,32 +148,16 @@ ${projects.slice(0, 4).map(p => `• ${p.title} (${p.category}, ${p.year}): ${p.
               Core Technical Competencies
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-xs">
-              <div>
-                <div className="font-display font-bold text-white mb-2">
-                  Software & Distributed
+              {SKILL_CATEGORIES.map((cat) => (
+                <div key={cat.title}>
+                  <div className="font-display font-bold text-white mb-2">
+                    {cat.title}
+                  </div>
+                  <p className="text-neutral-400 leading-relaxed">
+                    {cat.skills.map(s => s.name).join(', ')}
+                  </p>
                 </div>
-                <p className="text-neutral-400 leading-relaxed">
-                  Go, Python, gRPC microservices, Docker, Kubernetes, PostgreSQL, Redis, Apache Kafka, Distributed Consensus, High-Throughput Ingestion.
-                </p>
-              </div>
-
-              <div>
-                <div className="font-display font-bold text-white mb-2">
-                  Web & Frontend
-                </div>
-                <p className="text-neutral-400 leading-relaxed">
-                  React 19, Next.js App Router, TypeScript, Tailwind CSS, Three.js, WebSockets, Performance Optimization, Edge Caching, Web Security.
-                </p>
-              </div>
-
-              <div>
-                <div className="font-display font-bold text-white mb-2">
-                  Mobile & Native Apps
-                </div>
-                <p className="text-neutral-400 leading-relaxed">
-                  React Native (TurboModules), Swift / iOS, Cross-platform architecture, SQLite offline sync, APNs/FCM, Haptic gesture dynamics.
-                </p>
-              </div>
+              ))}
             </div>
           </div>
 
@@ -204,7 +194,7 @@ ${projects.slice(0, 4).map(p => `• ${p.title} (${p.category}, ${p.year}): ${p.
               Featured Shipped Works ({projects.length})
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {projects.slice(0, 4).map((p) => (
+              {projects.map((p) => (
                 <div key={p.id} className="p-3.5 rounded-lg border border-[#D4AF37]/20 bg-[#101015]">
                   <div className="flex items-center justify-between text-xs mb-1">
                     <span className="font-display font-bold text-white line-clamp-1">{p.title}</span>
@@ -215,6 +205,37 @@ ${projects.slice(0, 4).map(p => `• ${p.title} (${p.category}, ${p.year}): ${p.
                   </p>
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* Education & Interests */}
+          <div className="pt-8 mt-8 border-t border-[#D4AF37]/20 grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <h2 className="text-xs uppercase tracking-widest text-[#D4AF37] font-mono mb-4">
+                Education
+              </h2>
+              {EDUCATION.map((edu) => (
+                <div key={edu.institution} className="text-xs">
+                  <div className="font-display font-bold text-sm text-white">{edu.degree}</div>
+                  <div className="font-editorial italic text-[#F3E5AB]">{edu.institution}</div>
+                  <div className="font-mono text-[#D4AF37] mt-1">{edu.period}</div>
+                </div>
+              ))}
+            </div>
+            <div>
+              <h2 className="text-xs uppercase tracking-widest text-[#D4AF37] font-mono mb-4">
+                Areas of Interest
+              </h2>
+              <div className="flex flex-wrap gap-2">
+                {AREAS_OF_INTEREST.map((interest) => (
+                  <span
+                    key={interest}
+                    className="px-2.5 py-1 text-xs rounded bg-[#181820] text-[#E5C875] border border-[#D4AF37]/20"
+                  >
+                    {interest}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
 

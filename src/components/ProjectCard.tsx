@@ -1,6 +1,8 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import { ArrowUpRight, Github, ExternalLink, Smartphone, Edit3, Trash2, Layers } from 'lucide-react';
 import { Project } from '../types/portfolio';
+import { ProjectMedia } from './ProjectMedia';
 
 interface ProjectCardProps {
   project: Project;
@@ -8,6 +10,7 @@ interface ProjectCardProps {
   onEdit: (project: Project) => void;
   onDelete: (projectId: string) => void;
   isWide?: boolean;
+  index?: number;
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -15,24 +18,26 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   onSelect,
   onEdit,
   onDelete,
-  isWide = false
+  isWide = false,
+  index = 0
 }) => {
   return (
-    <article
+    <motion.article
+      layout
+      initial={{ opacity: 0, y: 40, scale: 0.96 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{ duration: 0.55, delay: (index % 3) * 0.1, ease: [0.22, 1, 0.36, 1] }}
+      whileHover={{ y: -8, rotate: index % 2 === 0 ? -0.6 : 0.6 }}
       onClick={() => onSelect(project)}
-      className={`group relative rounded-2xl bg-[#0D0D12] border border-[#D4AF37]/25 hover:border-[#D4AF37]/60 transition-all duration-300 overflow-hidden flex flex-col justify-between cursor-pointer hover:shadow-[0_0_35px_rgba(212,175,55,0.14)] ${
+      className={`group relative rounded-2xl bg-[#0D0D12] border border-[#D4AF37]/25 hover:border-[#D4AF37]/60 transition-[border-color,box-shadow] duration-300 overflow-hidden flex flex-col justify-between cursor-pointer hover:shadow-[0_0_35px_rgba(212,175,55,0.14)] ${
         isWide ? 'md:col-span-2' : ''
       }`}
     >
       <div>
         {/* Cover Media Container */}
         <div className="relative aspect-[16/10] overflow-hidden bg-neutral-950">
-          <img
-            src={project.imageUrl}
-            alt={project.title}
-            referrerPolicy="no-referrer"
-            className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-          />
+          <ProjectMedia project={project} />
           
           {/* Subtle dark gold gradient scrim */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#0D0D12] via-[#0D0D12]/30 to-transparent" />
@@ -72,8 +77,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         <div className="p-6">
           {/* Clean unboxed metadata with typographic separators */}
           <div className="flex items-center gap-2 text-xs text-neutral-400 mb-2.5">
-            <span>{project.year}</span>
-            <span aria-hidden="true">·</span>
+            {project.year && (
+              <>
+                <span>{project.year}</span>
+                <span aria-hidden="true">·</span>
+              </>
+            )}
             <span>{project.role}</span>
             {project.clientOrContext && (
               <>
@@ -131,7 +140,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             )}
           </div>
         ) : (
-          <span className="text-xs text-neutral-500 italic">Production Architecture</span>
+          <span className="text-xs text-neutral-500 italic">View Case Study</span>
         )}
 
         <div className="flex items-center gap-2">
@@ -165,6 +174,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           </span>
         </div>
       </div>
-    </article>
+    </motion.article>
   );
 };

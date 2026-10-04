@@ -1,277 +1,325 @@
-import { Project, UserProfile, ExperienceItem, SkillCategory } from '../types/portfolio';
+import { Project, UserProfile, ExperienceItem, SkillCategory, EducationItem } from '../types/portfolio';
 
 // Initial generated luxury assets
-import avatarImg from '../assets/images/hero_dev_portrait_1791112043531.jpg';
+import avatarImg from '../assets/images/plangnan_portrait.png';
 import fintechImg from '../assets/images/project_fintech_gold_1791112055912.jpg';
 import coutureImg from '../assets/images/project_couture_ecommerce_1791112068069.jpg';
 import cloudImg from '../assets/images/project_cloud_system_1791112079441.jpg';
+import afreshShot from '../assets/images/screens/afreshclub.png';
+import josCityShot from '../assets/images/screens/joscity.png';
+import popswitShot from '../assets/images/screens/popswit.png';
+import upnextShot from '../assets/images/screens/upnext.png';
+import gatewavShot from '../assets/images/screens/gatewav.png';
+import nexoraShot from '../assets/images/screens/nexora.png';
+import geniuswavShot from '../assets/images/screens/geniuswav.png';
+import knowristShot from '../assets/images/screens/knowrist.png';
+import cbrixiShot from '../assets/images/screens/cbrixi.png';
 
 export const INITIAL_USER_PROFILE: UserProfile = {
-  name: "Langnan Nungsep",
-  brandTag: "AURELIA // LANGNAN",
-  title: "Senior Full-Stack & Mobile Software Architect",
-  subTitle: "Where high-performance distributed systems meet haute couture visual aesthetics.",
-  bio: "A polyglot software engineer and mobile architect crafting scalable backend systems, responsive web applications, and intuitive native mobile experiences. Known for marrying resilient code architectures with bold, refined aesthetics.",
-  location: "London · Remote Worldwide",
+  name: "Plangnan Nungse",
+  brandTag: "AURELIA // PLANGNAN",
+  title: "Frontend Developer · Web & App Developer",
+  subTitle: "Clean, responsive interfaces that bring people, businesses and ideas together.",
+  bio: "Frontend-focused Software Engineer and Web & App Developer with a B.Sc. in Computer Science. I build, deploy and maintain web and application-based products with JavaScript, TypeScript, React and Next.js, taking them independently from concept to deployment, across education, e-commerce, food ordering, ticketing, smart-city services and creative marketplaces.",
+  location: "Jos, Plateau State, Nigeria",
   avatarUrl: avatarImg,
   email: "nungseplangnan@gmail.com",
-  github: "https://github.com",
+  github: "https://github.com/7eventyseven",
   linkedin: "https://linkedin.com",
   twitter: "https://x.com",
   availableForHire: true,
-  statusText: "Available for Senior Engineering Roles & High-Impact Contracts"
+  statusText: "Available for Frontend Roles & Freelance Projects"
 };
 
 export const INITIAL_PROJECTS: Project[] = [
   {
-    id: "proj-aurapay-mobile",
-    title: "AuraPay // High-Yield Wealth & Crypto iOS/Android Suite",
-    tagline: "Cross-platform fintech mobile app engineered with zero-latency biometric authorization and real-time ledger streaming.",
-    category: "Mobile",
-    year: "2026",
-    role: "Lead Mobile Architect",
-    clientOrContext: "Aura Capital Group",
-    imageUrl: fintechImg,
-    featured: true,
-    description: "Architected a dual-platform iOS and Android wealth management application serving high-net-worth investors with real-time portfolio rebalancing, decentralized ledger integration, and military-grade biometric encryption.",
-    challenge: "Handling concurrent WebSocket market ticker feeds while maintaining a silky 120Hz interface on both high-end and budget Android/iOS devices without battery thermal throttling.",
-    solution: "Built a reactive C++ native bridge wrapper with custom off-thread worker queues, reducing main thread serialization overhead by 78% and ensuring sub-40ms execution times.",
-    techStack: ["React Native", "Swift", "TypeScript", "WebSocket", "Node.js", "Tailwind"],
-    metrics: [
-      { label: "App Store Rating", value: "4.9 ★" },
-      { label: "Monthly Active Users", value: "125,000+" },
-      { label: "Order Execution", value: "< 38ms" }
-    ],
-    features: [
-      "FaceID / Biometric Hardware Key Enclave integration",
-      "Dynamic real-time candlestick rendering engine in WebGL/Skia",
-      "Offline transactional queuing with automatic conflict resolution",
-      "Comprehensive push notification orchestration via FCM and APNs"
-    ],
-    liveUrl: "https://example.com/aurapay",
-    githubUrl: "https://github.com/example/aurapay-mobile-core",
-    storeUrl: "https://apps.apple.com",
-    createdAt: Date.now() - 1000 * 60 * 60 * 24 * 10
-  },
-  {
-    id: "proj-maison-web",
-    title: "Maison Dorée // Haute Couture 3D Web Atelier & E-Commerce",
-    tagline: "Ultra-luxury responsive web platform featuring interactive 3D fabric simulations, headless Shopify engine, and bespoke checkout.",
+    id: "proj-afresh-club",
+    title: "Afresh Club",
+    tagline: "Education and course management platform for AFRESH Academy.",
     category: "Web",
-    year: "2026",
-    role: "Principal Full-Stack Engineer",
-    clientOrContext: "Maison Dorée Paris",
-    imageUrl: coutureImg,
+    year: "",
+    role: "Web & App Developer",
+    clientOrContext: "AFRESH Academy",
+    imageUrl: afreshShot,
+    imageStyle: "cover",
     featured: true,
-    description: "Designed and engineered an immersive digital storefront for an elite Paris fashion house. Blends WebGL fabric physics shaders with server-side rendered catalog experiences and custom global tax/currency checkout flows.",
-    challenge: "Delivering instantaneous page transitions and 60fps 3D cloth draping simulations without penalizing SEO or Core Web Vitals.",
-    solution: "Implemented incremental static regeneration with progressive WebGL LOD (level of detail) loading, achieving a 99/100 Lighthouse performance rating and sub-1s First Contentful Paint globally.",
-    techStack: ["Next.js", "React", "TypeScript", "Three.js / WebGL", "GraphQL", "Tailwind CSS"],
-    metrics: [
-      { label: "Checkout Conversion", value: "+210%" },
-      { label: "Lighthouse Performance", value: "99 / 100" },
-      { label: "Global P99 Latency", value: "240ms" }
-    ],
+    description: "I personally developed the Afresh Club website for AFRESH Academy. Students can register, pay their tuition, access educational content and download their notes, while teachers can upload and manage their courses. I built the user-facing interfaces and core functionality, then deployed the platform.",
+    techStack: ["React", "Next.js", "TypeScript", "Vercel"],
+    metrics: [],
     features: [
-      "Custom procedural GLSL shaders for metallic gold fabric specular reflections",
-      "Headless GraphQL integration with distributed edge caching",
-      "Dynamic localized currency conversion across 42 currencies",
-      "Zero-layout-shift responsive layouts across mobile, tablet, and 4K displays"
+      "Student registration and access to educational content",
+      "Online tuition payment",
+      "Downloadable course notes",
+      "Teacher course upload and management"
     ],
-    liveUrl: "https://example.com/maison-doree",
-    githubUrl: "https://github.com/example/maison-web-platform",
-    createdAt: Date.now() - 1000 * 60 * 60 * 24 * 20
+    liveUrl: "https://afreshclub.com",
+    createdAt: Date.now() - 1000 * 60 * 60 * 24 * 1
   },
   {
-    id: "proj-helios-backend",
-    title: "Helios Engine // Distributed Cloud Pipeline & Telemetry Mesh",
-    tagline: "Resilient cloud-native software backend processing millions of concurrent telemetry streams with automated self-healing.",
-    category: "Software",
-    year: "2025",
-    role: "Distributed Systems Engineer",
-    clientOrContext: "Helios Cloud Infrastructure",
-    imageUrl: cloudImg,
+    id: "proj-jos-city",
+    title: "Jos City",
+    tagline: "A smart city app that brings the people and businesses of Jos together in one place.",
+    category: "Web",
+    year: "",
+    role: "Frontend Developer",
+    clientOrContext: "Smart City Platform",
+    imageUrl: josCityShot,
+    imageStyle: "mobile",
     featured: true,
-    description: "Engineered a mission-critical distributed microservices engine in Go and Python. Coordinates data synchronization, real-time query aggregation, and automated failover across multi-region Kubernetes clusters.",
-    challenge: "Ingesting 4M+ discrete IoT & server event payloads per second during peak traffic spikes without packet drops or database write bottlenecks.",
-    solution: "Developed an asynchronous distributed pipeline using Apache Kafka, Redis cluster buffering, and partitioned Go workers with Raft consensus, eliminating write contention.",
-    techStack: ["Go", "Python", "Docker", "Kubernetes", "gRPC", "PostgreSQL", "Redis"],
-    metrics: [
-      { label: "Peak Ingestion", value: "4.2M events/s" },
-      { label: "System Availability", value: "99.999%" },
-      { label: "Cloud Cost Saved", value: "35% YoY" }
-    ],
+    description: "Jos City is a smart city app that connects the people of Jos with local businesses and services. It gives residents a single place to discover, reach and engage with everything happening in the city.",
+    techStack: ["HTML", "CSS", "JavaScript"],
+    metrics: [],
     features: [
-      "Zero-downtime rolling canary deployments via custom Kubernetes operator",
-      "gRPC protocol buffer contracts with strict schema versioning",
-      "End-to-end tracing and Prometheus metrics telemetry visualization",
-      "Distributed cache synchronization with Redis Pub/Sub backpressure"
+      "Unified hub for Jos residents and local businesses",
+      "Business discovery and listings",
+      "Community-focused smart city experience",
+      "Responsive layout for mobile and desktop"
     ],
-    githubUrl: "https://github.com/example/helios-engine-core",
-    createdAt: Date.now() - 1000 * 60 * 60 * 24 * 35
+    liveUrl: "https://joscity.com",
+    createdAt: Date.now() - 1000 * 60 * 60 * 24 * 2
   },
   {
-    id: "proj-voguepulse-fullstack",
-    title: "VoguePulse // Creator Live-Commerce & Realtime Video Hub",
-    tagline: "Full-stack creator monetization hub pairing interactive WebRTC streaming with instant flash-sale drops.",
-    category: "Full Stack",
-    year: "2025",
-    role: "Lead Full-Stack Developer",
-    clientOrContext: "VoguePulse Media",
-    imageUrl: fintechImg,
+    id: "proj-cbrixi",
+    title: "Cbrixi",
+    tagline: "An e-commerce platform for browsing and ordering gadgets and other products.",
+    category: "Web",
+    year: "",
+    role: "Web & App Developer",
+    clientOrContext: "E-commerce",
+    imageUrl: cbrixiShot,
+    imageStyle: "mobile",
+    featured: true,
+    description: "I personally developed the Cbrixi web application, where customers browse and order gadgets and other products. I built the customer-facing interfaces and product functionality, implemented the online purchasing workflow, and integrated the APIs behind it.",
+    techStack: ["React", "Next.js", "TypeScript", "REST APIs"],
+    metrics: [],
+    features: [
+      "Product browsing for gadgets and other items",
+      "Online ordering and purchasing workflow",
+      "API integrations",
+      "Responsive customer-facing interfaces"
+    ],
+    liveUrl: "https://cbrixi.com",
+    createdAt: Date.now() - 1000 * 60 * 60 * 24 * 3
+  },
+  {
+    id: "proj-popswit",
+    title: "Popswit",
+    tagline: "A food and beverage ordering and delivery platform.",
+    category: "Web",
+    year: "",
+    role: "Web & App Developer",
+    clientOrContext: "Food Ordering",
+    imageUrl: popswitShot,
+    imageStyle: "mobile",
     featured: false,
-    description: "Created a full-stack web and mobile web ecosystem allowing fashion creators to host live shopping broadcasts, chat synchronously with viewers, and trigger 30-second flash inventory sales.",
-    challenge: "Synchronizing video stream latency with real-time flash inventory counters during sudden viral traffic surges of 50,000+ simultaneous buyers.",
-    solution: "Leveraged WebRTC for ultra-low sub-second streaming combined with Redis atomic decrement transactions and optimistic UI updates.",
-    techStack: ["React", "Node.js", "Express", "PostgreSQL", "WebSockets", "Docker", "Tailwind CSS"],
-    metrics: [
-      { label: "Concurrent Viewers", value: "50,000+" },
-      { label: "Flash Sale Sellouts", value: "< 18s" },
-      { label: "Creator Earnings", value: "$2.4M+" }
-    ],
+    description: "I personally developed the Popswit web platform for ordering food and beverages and getting them delivered. I worked on the frontend implementation, ordering functionality and deployment to give customers a smooth digital ordering experience.",
+    techStack: ["React", "Next.js", "TypeScript", "Vercel"],
+    metrics: [],
     features: [
-      "Ultra-low latency sub-second live video broadcasting",
-      "High-throughput transactional bidding engine",
-      "Automated automated invoice generation and Stripe Connect payouts",
-      "Interactive audience reaction emoji burst engine at 60fps"
+      "Food and beverage ordering",
+      "Delivery service",
+      "Customer-facing ordering interfaces",
+      "Responsive layout for mobile and desktop"
     ],
-    liveUrl: "https://example.com/voguepulse",
-    githubUrl: "https://github.com/example/voguepulse-stack",
-    createdAt: Date.now() - 1000 * 60 * 60 * 24 * 50
+    liveUrl: "https://popswit.com",
+    createdAt: Date.now() - 1000 * 60 * 60 * 24 * 4
   },
   {
-    id: "proj-velvet-mobile",
-    title: "Velvet Stylist // AI-Powered Smart Wardrobe Mobile App",
-    tagline: "Native mobile lifestyle application utilizing on-device vision models to curate personalized haute fashion looks.",
-    category: "Mobile",
-    year: "2025",
-    role: "Mobile App Engineer",
-    clientOrContext: "Velvet Studio",
-    imageUrl: coutureImg,
+    id: "proj-upnext",
+    title: "UpNext",
+    tagline: "A creative marketplace and booking platform connecting African creatives with clients.",
+    category: "Web",
+    year: "",
+    role: "Web & App Developer",
+    clientOrContext: "Creative Marketplace",
+    imageUrl: upnextShot,
+    imageStyle: "mobile",
     featured: false,
-    description: "Designed a native mobile app for iOS and Android that catalogs user wardrobes via computer vision, matches palettes using color theory algorithms, and suggests runway-inspired outfits.",
-    challenge: "Running computer vision background segmentation on mobile devices without freezing the UI or draining battery.",
-    solution: "Integrated CoreML and TensorFlow Lite quantized models with background processing workers, delivering instantaneous background cutout in under 120ms.",
-    techStack: ["React Native", "TypeScript", "Python", "CoreML", "FastAPI", "SQLite"],
-    metrics: [
-      { label: "Outfits Generated", value: "1.8M+" },
-      { label: "Segmentation Time", value: "115ms" },
-      { label: "Daily Retention", value: "48%" }
-    ],
+    description: "I personally developed UpNext, a platform designed to connect African creatives with clients. Clients can discover creatives and submit their project requirements, and the product is designed to scale as a marketplace.",
+    techStack: ["React", "Next.js", "TypeScript"],
+    metrics: [],
     features: [
-      "On-device neural background removal for clothing uploads",
-      "Smart seasonal capsule wardrobe generator",
-      "Weather-aware outfit recommendation engine",
-      "Smooth fluid gestural deck swiping with haptic tactile feedback"
+      "Creative discovery for clients",
+      "Project request workflow covering location, dates, budget and description",
+      "Application routing and user interaction flows",
+      "Responsive interfaces for different screen sizes"
     ],
-    storeUrl: "https://apps.apple.com",
-    githubUrl: "https://github.com/example/velvet-app",
-    createdAt: Date.now() - 1000 * 60 * 60 * 24 * 70
+    createdAt: Date.now() - 1000 * 60 * 60 * 24 * 5
   },
   {
-    id: "proj-aether-software",
-    title: "AetherKV // Embedded Key-Value Storage & Raft Engine",
-    tagline: "High-performance embedded storage library written in Rust and Go with LSM-Tree storage and transactional guarantees.",
+    id: "proj-gatewav",
+    title: "Gatewav",
+    tagline: "A ticketing platform for booking and paying for event tickets, and browsing past and upcoming events.",
+    category: "Web",
+    year: "",
+    role: "Frontend Developer",
+    clientOrContext: "Events & Ticketing",
+    imageUrl: gatewavShot,
+    imageStyle: "mobile",
+    featured: false,
+    description: "Gatewav is a ticket platform where anyone can book and pay for event tickets. Users can browse upcoming events, look back at past events, and complete their ticket purchase in one smooth flow.",
+    techStack: ["HTML", "CSS", "JavaScript"],
+    metrics: [],
+    features: [
+      "Ticket booking and online payment",
+      "Upcoming events listings",
+      "Past events archive",
+      "Responsive layout for mobile and desktop"
+    ],
+    liveUrl: "https://gatewav.com",
+    createdAt: Date.now() - 1000 * 60 * 60 * 24 * 6
+  },
+  {
+    id: "proj-sms",
+    title: "Nexora SMS // School Management System",
+    tagline: "An all-in-one school management system, from tracking results to paying school fees.",
     category: "Software",
-    year: "2024",
-    role: "Core Systems Engineer",
-    clientOrContext: "Open Source Systems",
-    imageUrl: cloudImg,
+    year: "",
+    role: "Frontend Developer",
+    clientOrContext: "Education",
+    imageUrl: nexoraShot,
+    imageStyle: "mobile",
     featured: false,
-    description: "An open-source Log-Structured Merge-tree (LSM) embedded database engine designed for extreme read/write throughput in edge microservices and distributed stateful applications.",
-    challenge: "Minimizing write amplification while maintaining fast point-lookups and sequential range scans on SSD storage.",
-    solution: "Crafted custom Bloom filters, block-based caching, and concurrent compactions, surpassing baseline RocksDB read benchmarks in microservice test suites.",
-    techStack: ["Rust", "Go", "C++", "Linux Systems", "gRPC", "CI/CD"],
-    metrics: [
-      { label: "Write Throughput", value: "820k ops/s" },
-      { label: "GitHub Stars", value: "2.1k ★" },
-      { label: "Zero Panic SLA", value: "100%" }
-    ],
+    description: "Nexora SMS is a school management system that helps schools manage students, teachers, parents, academics and finances in one secure platform, from tracking results to paying school fees.",
+    techStack: ["HTML", "CSS", "JavaScript"],
+    metrics: [],
     features: [
-      "Crash-resilient Write-Ahead Logging (WAL) with CRC32 verification",
-      "Tunable memtable sizes and concurrent background SSTable compactor",
-      "C-ABI bindings for seamless integration into Python, Node.js, and Swift",
-      "Deterministic fuzz testing suite passing 10,000,000 continuous test cycles"
+      "Student results tracking",
+      "School fee payments",
+      "Centralised school administration",
+      "Dashboards for day-to-day school operations"
     ],
-    githubUrl: "https://github.com/example/aether-kv",
-    createdAt: Date.now() - 1000 * 60 * 60 * 24 * 90
+    liveUrl: "https://nexorasms.com",
+    createdAt: Date.now() - 1000 * 60 * 60 * 24 * 7
+  },
+  {
+    id: "proj-geniuswav",
+    title: "Genius Wav",
+    tagline: "An app for booking music production sessions.",
+    category: "Web",
+    year: "",
+    role: "Frontend Developer",
+    clientOrContext: "Music Production",
+    imageUrl: geniuswavShot,
+    imageStyle: "mobile",
+    featured: false,
+    description: "Genius Wav lets artists and creators book music production sessions online, making it simple to find a slot and secure studio time.",
+    techStack: ["HTML", "CSS", "JavaScript"],
+    metrics: [],
+    features: [
+      "Music production session booking",
+      "Session scheduling",
+      "Responsive layout for mobile and desktop"
+    ],
+    liveUrl: "https://geniuswav.com",
+    createdAt: Date.now() - 1000 * 60 * 60 * 24 * 8
+  },
+  {
+    id: "proj-knowrist",
+    title: "Knowrist",
+    tagline: "A word game that scrambles words for you to rearrange.",
+    category: "Web",
+    year: "",
+    role: "Frontend Developer",
+    clientOrContext: "Gaming",
+    imageUrl: knowristShot,
+    imageStyle: "logo",
+    featured: false,
+    description: "Knowrist is a word gaming app that scrambles words and challenges players to arrange the letters back into the right order.",
+    techStack: ["HTML", "CSS", "JavaScript"],
+    metrics: [],
+    features: [
+      "Scrambled word puzzles",
+      "Interactive letter arranging",
+      "Responsive layout for mobile and desktop"
+    ],
+    liveUrl: "https://knowrist.com",
+    createdAt: Date.now() - 1000 * 60 * 60 * 24 * 9
   }
 ];
 
 export const SKILL_CATEGORIES: SkillCategory[] = [
   {
-    title: "Software & Distributed Systems",
-    description: "Architecting backend engines, resilient microservices, and high-throughput data processing pipelines.",
+    title: "Programming Languages",
+    description: "The languages I use to build interfaces, application logic and backend features.",
     skills: [
-      { name: "Go (Golang)", level: "Production Master", description: "Concurrent workers, gRPC microservices, low-latency APIs" },
-      { name: "Python", level: "Senior", description: "FastAPI, asynchronous event workers, data pipelines, automated tests" },
-      { name: "System Design", level: "Architect", description: "Distributed consensus, fault tolerance, caching topologies, API gateways" },
-      { name: "Docker & K8s", level: "Production", description: "Containerized deployments, Helm charts, automated scaling, health probes" },
-      { name: "PostgreSQL & Redis", level: "Advanced", description: "Query optimization, indexing strategies, Pub/Sub, distributed locks" }
+      { name: "JavaScript", level: "Core", description: "Interactive UI logic, DOM work, async code and application features" },
+      { name: "TypeScript", level: "Core", description: "Typed, maintainable React and Next.js codebases" },
+      { name: "HTML", level: "Core", description: "Semantic, accessible and SEO-friendly page structure" },
+      { name: "CSS", level: "Core", description: "Responsive layouts with Flexbox and Grid, animations and polished styling" },
+      { name: "Python", level: "Proficient", description: "Scripting, automation and AI/ML exploration" },
+      { name: "PHP", level: "Proficient", description: "Server-side web development" }
     ]
   },
   {
-    title: "Web Engineering & Modern Frontend",
-    description: "Crafting fluid, high-performance web applications with haute visual fidelity and rigorous web standards.",
+    title: "Frameworks & Development",
+    description: "Building responsive, user-focused web applications from requirements to release.",
     skills: [
-      { name: "React & Next.js", level: "Expert", description: "Server components, App Router, state machines, suspense boundaries" },
-      { name: "TypeScript", level: "Master", description: "Strict typing, generic abstractions, robust enterprise design patterns" },
-      { name: "Tailwind CSS & Styling", level: "Haute Craft", description: "Responsive layouts, bespoke tokens, fluid typography, dark luxury themes" },
-      { name: "Three.js & WebGL", level: "Proficient", description: "3D model rendering, custom shaders, interactive product viewports" },
-      { name: "Performance & SEO", level: "Specialist", description: "Sub-second LCP, zero layout shifts, PWA compliance, accessibility" }
+      { name: "React", level: "Core", description: "Component-based, user-focused interfaces" },
+      { name: "Next.js", level: "Core", description: "Routing, full web applications and production deployments" },
+      { name: "Responsive Web Development", level: "Core", description: "Mobile-first interfaces that adapt to every screen size" },
+      { name: "API Integration", level: "Proficient", description: "REST APIs and third-party services wired into web applications" },
+      { name: "Node.js", level: "Proficient", description: "Server-side JavaScript and application logic" }
     ]
   },
   {
-    title: "Mobile & Cross-Platform Apps",
-    description: "Engineering fluid, native-grade applications for iOS and Android with delightful gestural ergonomics.",
+    title: "Tools, Deployment & More",
+    description: "Shipping, maintaining and improving software in production.",
     skills: [
-      { name: "React Native", level: "Principal", description: "New Architecture (TurboModules & Fabric), custom native bridges, Skia" },
-      { name: "iOS & Swift", level: "Advanced", description: "SwiftUI, CoreData, Keychain security enclave, APNs, widget development" },
-      { name: "Mobile State & Offline", level: "Senior", description: "Zustand, Redux Toolkit, SQLite offline-first sync, background sync" },
-      { name: "App Store & Play Store", level: "Veteran", description: "CI/CD Fastlane automated delivery, submission compliance, OTA updates" },
-      { name: "Motion & Gestures", level: "Haute Craft", description: "60-120fps physics animations, tactile haptics, spring dynamics" }
+      { name: "Git & GitHub", level: "Core", description: "Source control and collaborative development workflows" },
+      { name: "Vercel", level: "Core", description: "Deploying and hosting web applications" },
+      { name: "Debugging", level: "Core", description: "Troubleshooting issues and improving existing functionality" },
+      { name: "AI / ML", level: "Exploring", description: "Exploring artificial intelligence and machine learning for real-world solutions" }
     ]
   }
 ];
 
 export const CAREER_EXPERIENCES: ExperienceItem[] = [
   {
-    period: "2024 — Present",
-    role: "Lead Full-Stack & Mobile Software Architect",
-    company: "Aura Haute Systems // Private Consultancy",
-    location: "London · Global Remote",
-    description: "Directing technical architecture for venture-backed consumer tech, luxury fashion e-commerce, and high-frequency fintech platforms.",
+    period: "Sep 2025 — Present",
+    role: "Web & App Developer",
+    company: "Afresh Centre",
+    location: "Nigeria",
+    description: "Developing and maintaining web and application-based products for the organization, working independently across multiple products, from new applications to existing systems.",
     achievements: [
-      "Architected 4 mobile and web applications from initial zero-to-one to over 250k+ active users globally.",
-      "Spearheaded microservice transition from monolithic Python to Go gRPC services, lowering cloud infrastructure costs by 35%.",
-      "Standardized shared cross-platform design token systems and offline-first client synchronization protocols."
+      "Build responsive, user-focused interfaces using JavaScript, TypeScript, React, Next.js, HTML and CSS.",
+      "Develop software features from requirements through implementation and deployment.",
+      "Integrate APIs and external services into web applications.",
+      "Deploy and maintain applications using Vercel and other hosting and deployment tools.",
+      "Troubleshoot application issues, debug code and improve existing software functionality.",
+      "Apply software engineering principles to build practical solutions for education, commerce, food ordering and other business use cases."
     ],
-    tech: ["Go", "React Native", "TypeScript", "Next.js", "Kubernetes", "Redis", "AWS"]
+    tech: ["JavaScript", "TypeScript", "React", "Next.js", "HTML", "CSS", "Git", "GitHub", "Vercel"]
   },
   {
-    period: "2022 — 2024",
-    role: "Senior Software Engineer",
-    company: "Vanguard Digital Technologies",
-    location: "Remote",
-    description: "Core contributor to scalable cloud infrastructure, real-time analytics engines, and cross-platform native client applications.",
+    period: "2019 — 2020",
+    role: "MoMo Canvasser",
+    company: "MTN Nigeria",
+    location: "Nigeria",
+    description: "Promoted MTN Mobile Money services and helped customers register for and adopt digital financial services.",
     achievements: [
-      "Engineered real-time telemetry streaming service handling 4M+ daily payloads with sub-50ms processing latency.",
-      "Mentored a distributed squad of 8 frontend and mobile engineers across modern React, Swift, and TypeScript practices.",
-      "Achieved 99.98% production uptime across critical consumer-facing transactional endpoints."
+      "Engaged directly with customers to explain digital financial services and their use cases.",
+      "Supported customer onboarding and provided basic assistance with the service.",
+      "Developed communication, customer service and field problem-solving skills."
     ],
-    tech: ["TypeScript", "React", "Node.js", "Python", "PostgreSQL", "Docker", "Fastlane"]
-  },
-  {
-    period: "2020 — 2022",
-    role: "Full-Stack Web & App Developer",
-    company: "Solstice Studio",
-    location: "London, UK",
-    description: "Delivered bespoke digital applications, interactive 3D web experiences, and iOS/Android mobile clients for high-profile lifestyle brands.",
-    achievements: [
-      "Shipped 12+ production web and native mobile projects with 100% on-time milestone delivery.",
-      "Pioneered WebGL product customizer increasing average checkout order value by 42%.",
-      "Authored custom open-source libraries for resilient local storage and tactile gesture controls."
-    ],
-    tech: ["React Native", "Vue/React", "Express", "Three.js", "Tailwind CSS", "MongoDB"]
+    tech: ["Customer Onboarding", "Communication", "Digital Financial Services"]
   }
+];
+
+export const EDUCATION: EducationItem[] = [
+  {
+    institution: "University of Jos",
+    degree: "Bachelor of Science (B.Sc.) — Computer Science",
+    period: "Graduated September 2025"
+  }
+];
+
+export const AREAS_OF_INTEREST: string[] = [
+  "Software Engineering",
+  "Artificial Intelligence",
+  "Machine Learning",
+  "Developer Tools",
+  "Web Applications",
+  "Automation",
+  "Emerging Technologies"
 ];

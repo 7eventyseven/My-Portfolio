@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { X, ExternalLink, Github, Smartphone, ArrowRight, ShieldCheck, Zap, Layers, Sparkles } from 'lucide-react';
 import { Project } from '../types/portfolio';
+import { ProjectMedia } from './ProjectMedia';
 
 interface ProjectModalProps {
   project: Project | null;
@@ -43,10 +44,14 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
             <span className="text-xs font-mono tracking-widest text-[#D4AF37] uppercase">
               {project.category} // CASE STUDY
             </span>
-            <span className="text-xs text-neutral-500">·</span>
-            <span className="text-xs text-neutral-400 font-medium">
-              {project.year}
-            </span>
+            {project.year && (
+              <>
+                <span className="text-xs text-neutral-500">·</span>
+                <span className="text-xs text-neutral-400 font-medium">
+                  {project.year}
+                </span>
+              </>
+            )}
           </div>
 
           <div className="flex items-center gap-2">
@@ -73,13 +78,8 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
         <div className="overflow-y-auto flex-1">
           
           {/* Hero Media Container */}
-          <div className="relative aspect-[21/9] sm:aspect-[21/8] overflow-hidden bg-neutral-950">
-            <img
-              src={project.imageUrl}
-              alt={project.title}
-              referrerPolicy="no-referrer"
-              className="w-full h-full object-cover"
-            />
+          <div className="relative aspect-[16/9] sm:aspect-[21/8] overflow-hidden bg-neutral-950 group">
+            <ProjectMedia project={project} align="right" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0F] via-[#0B0B0F]/40 to-transparent" />
             
             <div className="absolute bottom-6 left-6 right-6">
@@ -101,10 +101,12 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                   <div className="text-[10px] uppercase tracking-wider text-neutral-500">Role</div>
                   <div className="font-medium text-white mt-0.5">{project.role}</div>
                 </div>
-                <div>
-                  <div className="text-[10px] uppercase tracking-wider text-neutral-500">Timeline</div>
-                  <div className="font-medium text-white mt-0.5">{project.year}</div>
-                </div>
+                {project.year && (
+                  <div>
+                    <div className="text-[10px] uppercase tracking-wider text-neutral-500">Timeline</div>
+                    <div className="font-medium text-white mt-0.5">{project.year}</div>
+                  </div>
+                )}
                 {project.clientOrContext && (
                   <div>
                     <div className="text-[10px] uppercase tracking-wider text-neutral-500">Context</div>
@@ -182,7 +184,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
             {/* In-Depth Overview */}
             <div>
               <h4 className="text-xs uppercase tracking-widest text-[#D4AF37] font-mono mb-3">
-                Architectural Overview
+                  Project Overview
               </h4>
               <p className="font-sans text-neutral-300 text-base leading-relaxed">
                 {project.description}
@@ -222,7 +224,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
             {project.features && project.features.length > 0 && (
               <div>
                 <h4 className="text-xs uppercase tracking-widest text-[#D4AF37] font-mono mb-4">
-                  Core Technical Capabilities
+                  Key Features
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {project.features.map((feat, i) => (
